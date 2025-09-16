@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Course Inquiry - Maths Mania</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav"><div class="container"><div class="logo">Maths <span>Mania</span></div></div></header>
+
+<main class="container">
+  <h1 id="courseTitle">Inquiry Form</h1>
+
+  <form id="courseInquiryForm" class="form">
+    <label>Full Name*</label>
+    <input id="name" required>
+
+    <label>Address*</label>
+    <input id="address" required>
+
+    <label>Phone*</label>
+    <input id="phone" required>
+
+    <label>Email*</label>
+    <input id="email" type="email">
+
+    <input id="course" type="hidden">
+
+    <button type="submit" class="btn primary">Submit Inquiry</button>
+    <div id="status"></div>
+  </form>
+</main>
+
+<footer class="footer"><div class="container">© Maths Mania</div></footer>
+
+<script>
+const API_BASE = (location.hostname.includes("127.0.0.1")||location.hostname.includes("localhost")) 
+                 ? "http://localhost:4000" : "";
+
+// Read course from URL
+const params = new URLSearchParams(window.location.search);
+const courseName = params.get("course") || "Unknown Course";
+document.getElementById("courseTitle").innerText = "Inquiry for " + courseName;
+document.getElementById("course").value = courseName;
+
+// Submit form
+document.getElementById("courseInquiryForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const payload = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    course: document.getElementById("course").value,
+    message: "Address: " + document.getElementById("address").value
+  };
+  document.getElementById("status").innerText = "Sending...";
+  try{
+    const res = await fetch(API_BASE + "/api/inquiries", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+    const d = await res.json();
+    if(d.ok){
+      document.getElementById("status").innerText = "Inquiry sent successfully!";
+      e.target.reset();
+    } else {
+      document.getElementById("status").innerText = "Error: "+(d.msg||"");
+    }
+  }catch(err){
+    document.getElementById("status").innerText = "Network error!";
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Career - Maths Mania</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+      <div class="logo">Maths <span>Mania</span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <a href="#">About Us ▾</a>
+          <div class="dropdown-content">
+            <a href="about-vision.html">Our Vision</a>
+            <a href="about-why.html">Why Maths Mania</a>
+            <a href="about-companies.html">Our Companies</a>
+            <a href="about-growth.html">Employment Growth</a>
+            <a href="about-contact.html">Contact Us</a>
+            <a href="about-gallery.html">Gallery</a>
+          </div>
+        </div>
+        <a href="exams.html">Exams</a>
+        <a href="exam-before.html">Exam Before Exam</a>
+        <a href="career.html">Career</a>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main>
+    <section class="career-hero">
+      <div class="container">
+        <h1>Find the job that fits your life</h1>
+        <p>Search current vacancies at Maths Mania</p>
+
+        <div class="job-search">
+          <input id="searchQ" placeholder="job title / keywords"/>
+          <select id="loc">
+            <option>Pan India</option>
+            <option>Lucknow</option>
+            <option>Remote</option>
+          </select>
+          <button onclick="searchJobs()" class="btn primary">Search</button>
+        </div>
+
+        <div id="jobsList" class="jobs-list"></div>
+      </div>
+    </section>
+  </main>
+
+<script>
+const API = '';
+
+async function searchJobs(){
+  const q = document.getElementById('searchQ').value;
+  document.getElementById('jobsList').innerHTML = 'Searching...';
+  try {
+    const res = await fetch(API + '/api/vacancies?q=' + encodeURIComponent(q));
+    const d = await res.json();
+    if (!d.ok) { document.getElementById('jobsList').innerHTML = 'Error'; return; }
+    if (!d.vacancies.length) { document.getElementById('jobsList').innerHTML = '<div>No vacancies</div>'; return; }
+    let html = '';
+    d.vacancies.forEach(v=>{
+      html += `<div class="job"><h3>${escapeHtml(v.title)}</h3><div class="meta">${escapeHtml(v.location)} • ${escapeHtml(v.type)}</div><p>${escapeHtml(v.desc)}</p></div>`;
+    });
+    document.getElementById('jobsList').innerHTML = html;
+  } catch(e){ document.getElementById('jobsList').innerHTML = 'Network error'; }
+}
+
+function escapeHtml(s){ if(!s) return ''; return s.replace(/[&<"'>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+
+window.onload = () => searchJobs();
+</script>
+
+</body>
+</html>

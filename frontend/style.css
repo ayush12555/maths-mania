@@ -1,0 +1,494 @@
+/* frontend/style.css - simple, responsive styles inspired by screenshots */
+:root{--bg:#fff;--primary:#2c1367;--accent:#d43b3b;--muted:#6b6b7a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, Arial;background:#fafafa;color:#111}
+.container{max-width:1150px;margin:0 auto;padding:24px}
+
+/* NAV */
+.nav{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;color:var(--primary);font-size:22px}
+.logo span{color:var(--accent)}
+nav a{margin-left:18px;color:#333;text-decoration:none;padding:14px 6px}
+nav a.active{border-bottom:3px solid var(--accent);padding-bottom:11px}
+.btn{padding:8px 14px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;text-decoration:none}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#ff7b7b);color:#fff;border:none}
+
+/* HERO */
+.hero{background:linear-gradient(90deg,#fff 0%, #f6fbff 100%);padding:60px 0}
+.hero-inner{display:flex;gap:30px;align-items:center}
+.hero-left{flex:1}
+.hero-right{flex:0 0 480px;text-align:center}
+.hero h1{font-size:36px;color:var(--primary);margin:0 0 14px}
+.subtitle{color:var(--muted);max-width:650px;line-height:1.5}
+.hero-actions{margin-top:20px}
+.store{display:inline-block;margin-right:12px;padding:10px 16px;border-radius:8px;background:#111;color:#fff;text-decoration:none}
+
+/* COURSES */
+.courses{padding:30px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card {
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(20,20,30,0.05);
+  text-align:center;
+  text-decoration:none;
+  color:#222;
+  transition:transform 0.2s ease;
+  padding:10px;
+}
+.card:hover { transform:translateY(-5px); }
+
+.card img {
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px 8px 0 0;
+}
+.card h3 {
+  font-size:16px;
+  margin:10px 0 0;
+  color:#2c1367;
+}
+
+/* INQUIRY */
+.inquiry-wrap{display:flex;gap:18px}
+.form{flex:1;background:#fff;padding:18px;border-radius:10px;border:1px solid #eee}
+.form label{font-size:13px;color:var(--muted);margin-top:10px;display:block}
+.form input,.form textarea,.form select{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #ddd}
+.about-card{width:300px;background:linear-gradient(180deg,#fff,#fafafa);padding:16px;border-radius:10px;border:1px solid #eee}
+.actions{display:flex;align-items:center;gap:12px;margin-top:12px}
+.status{color:green}
+
+/* ADMIN */
+.admin-row{display:flex;gap:8px;align-items:center}
+#adminList .inq{background:#fff;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #eee}
+
+/* career */
+.career-hero{padding:40px 0;background:linear-gradient(180deg,#fff,#f3f7ff)}
+.job-search{display:flex;gap:8px;margin-top:16px}
+.job-search input, .job-search select{padding:10px;border-radius:8px;border:1px solid #ddd;flex:1}
+.jobs-list .job{background:#fff;padding:14px;margin-top:12px;border-radius:10px;border:1px solid #eee}
+
+/* center card */
+.center-box{display:flex;justify-content:center;align-items:center;padding:80px 0}
+.form-card{width:520px;padding:28px}
+
+/* footer */
+.footer{background:var(--primary);color:#fff;padding:20px;margin-top:36px;border-top:6px solid var(--accent)}
+
+/* responsive */
+@media(max-width:900px){
+  .hero-inner{flex-direction:column}
+  .inquiry-wrap{flex-direction:column}
+  .about-card{width:100%}
+}
+/* Dropdown */
+.dropdown { position: relative; display:inline-block; }
+.dropdown-content {
+  display:none; position:absolute; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  border-radius:8px; min-width:200px; z-index:100;
+}
+.dropdown-content a {
+  display:block; padding:10px 14px; color:#333; text-decoration:none;
+}
+.dropdown-content a:hover { background:#f5f5f5; }
+.dropdown:hover .dropdown-content { display:block; }
+/* FOOTER */
+.site-footer { background:#111; color:#fff; margin-top:40px; }
+.footer-top { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px; padding:40px 20px; }
+.footer-col h3 { margin-bottom:12px; color:#ff4d4d; }
+.footer-col p, .footer-col a { font-size:14px; line-height:1.6; color:#ddd; text-decoration:none; }
+.footer-col a:hover { color:#fff; }
+.footer-bottom { text-align:center; background:#000; padding:12px; font-size:13px; color:#bbb; }
+/* Our Products & Features */
+.products, .features { 
+  margin:80px auto; 
+}
+
+.products h2, .features h2 { 
+  text-align:center; 
+  margin-bottom:40px; 
+  color:#2c1367; 
+  font-size:28px;
+}
+
+/* Grid layout: 2 column */
+.products .grid, .features .grid { 
+  display:grid; 
+  grid-template-columns:repeat(2, 1fr); 
+  gap:30px; 
+}
+
+/* Card styling */
+.product-card, .feature-card {
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:12px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:transform 0.2s ease;
+  min-height:350px;   /* card height increase */
+}
+
+.product-card:hover, .feature-card:hover { 
+  transform:translateY(-8px); 
+}
+
+.product-card img, .feature-card img {
+  width:100%;
+  height:200px;  /* image size bada */
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+.product-card h3, .feature-card h3 {
+  margin:10px 0;
+  font-size:22px;  /* bada text */
+  color:#e63946;
+}
+
+.product-card p, .feature-card p { 
+  font-size:16px; 
+  color:#444; 
+  line-height:1.6; 
+}
+.exam-header {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.banner-img {
+  width: 250px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+.banner-text h1 {
+  font-size: 28px;
+  color: #2c1367;
+}
+.banner-text p {
+  font-size: 16px;
+  color: #444;
+}
+
+/* Sidebar + Content Layout */
+.exam-details {
+  display: flex;
+  margin: 20px;
+}
+.sidebar {
+  width: 25%;
+  background: #f8f8f8;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin: 15px 0;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: #2c1367;
+  font-weight: bold;
+}
+.content {
+  width: 75%;
+  padding: 20px;
+}
+.content h2 {
+  margin-top: 30px;
+  color: #222;
+}
+.available-courses {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.course-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  padding: 20px;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: #111;
+}
+
+.course-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.course-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.course-card p {
+  font-weight: bold;
+  color: #1a1a1a;
+}
+.course-card img {
+  width: 400px;   /* size bada kar diya */
+  height: auto;   /* proportion maintain karega */
+  display: block;
+  margin: 0 auto 15px auto; /* center me align aur neeche gap */
+}
+.hero-section {
+  background: linear-gradient(135deg, #f0f8ff, #ffffff); /* halka blue to white */
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 10px; /* thoda rounded effect */
+}
+/* Contact Section */
+.contact-section {
+  background: #0a2e73;
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  margin-right: 40px;
+}
+
+.contact-info h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contact-form h2 {
+  margin-bottom: 15px;
+  color: #0a2e73;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.contact-form button {
+  background: #0a2e73;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #ffd700;
+  color: #000;
+}
+
+/* Footer */
+.footer {
+  background: #051a40;
+  color: #fff;
+  padding: 50px 20px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.footer-logo h2 {
+  font-size: 28px;
+}
+
+.footer-logo span {
+  color: #ffd700;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  margin-bottom: 15px;
+  color: #ffd700;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #ffd700;
+}
+
+.footer-social .social-icons img {
+  width: 30px;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-social .social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  margin-top: 20px;
+}
+.hero {
+  background: linear-gradient(to right, #f9fbff, #eef2f9); /* light gradient */
+  padding: 80px 5%;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 38px;
+  line-height: 1.4;
+  color: #1a237e;
+}
+
+.hero-text h1 span {
+  color: #c2185b;
+  font-weight: bold;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: #333;
+  margin: 15px 0 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #000;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.btn.google-play {
+  background: #000;
+}
+
+.btn.app-store {
+  background: #333;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Right Image */
+.hero-image {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 350px;
+  width: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.course-card img {
+  width: 200px;         /* sab images ek size ki */
+  height: 200px;
+  object-fit: contain;  /* image stretch nahi hogi, proper fit karegi */
+  margin: auto;
+  display: block;
+}
